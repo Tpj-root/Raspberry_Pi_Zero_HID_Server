@@ -86,6 +86,12 @@
     </style>
 </head>
 <body>
+<div class="nav-buttons" style="background: #2c3e50; padding: 15px 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+    <a href="index.php" style="background: #3498db; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 500;">🏠 Dashboard</a>
+    <a href="hid_control.php" style="background: #27ae60; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 500;">⌨️ Basic Control</a>
+    <a href="hid_windows_commands.php" style="background: #0078d4; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 500;">🪟 Windows</a>
+    <a href="hid_linux_commands.php" style="background: #e44d26; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 500;">🐧 Linux</a>
+</div>
     <div class="header">
         <h1>Raspberry Pi Zero HID Controller</h1>
         <p>Web-based HID Device Control Interface</p>
