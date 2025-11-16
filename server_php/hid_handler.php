@@ -160,12 +160,12 @@ try {
         echo "Linux command executed: " . $command;
     }
     // Handle simple text
-    elseif (strlen($command) <= 50 && !str_contains($command, '+')) {
+    elseif (strlen($command) <= 50 && strpos($command, '+') === false) {
         send_text($device, $command);
         echo "Text sent: " . $command;
     }
-    // Handle custom key combinations
-    elseif (str_contains($command, '+')) {
+    // Handle custom key combinations - FIXED LINE (using strpos instead of str_contains)
+    elseif (strpos($command, '+') !== false) {
         $parts = explode('+', $command);
         $modifiers = [];
         $keys = [];

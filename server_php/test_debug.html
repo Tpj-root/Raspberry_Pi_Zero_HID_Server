@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HID Debug Test</title>
+</head>
+<body>
+    <h1>HID Debug Test</h1>
+    <button onclick="testHID('test')">Send Test (a)</button>
+    <button onclick="testHID('hello')">Send Hello</button>
+    <button onclick="testHID('abc')">Send ABC</button>
+    
+    <div id="result" style="margin-top: 20px; padding: 10px; background: #f0f0f0;"></div>
+
+    <script>
+        function testHID(command) {
+            fetch('hid_handler_debug.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'command=' + encodeURIComponent(command)
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('result').innerHTML = 'Response: ' + data;
+            })
+            .catch(error => {
+                document.getElementById('result').innerHTML = 'Error: ' + error;
+            });
+        }
+    </script>
+</body>
+</html>
