@@ -259,7 +259,11 @@
             <button class="command-button" onclick="sendCommand('pwd')">Send "pwd"</button>
             <button class="command-button" onclick="sendCommand('whoami')">Send "whoami"</button>
             <button class="command-button" onclick="sendCommand('enter')">↵ Enter Key</button>
-            <button class="command-button" onclick="sendCommand('date')">Send "date"</button>
+<!--             Use HTML entities 
+ -->            
+            <button class="command-button" onclick="sendCommand('date | tr &quot; &quot; &quot;_&quot;')">
+    			<span>Send "date" </span>
+			</button>
         </div>
         
         <!-- One-click special commands -->
