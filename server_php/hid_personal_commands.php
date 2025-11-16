@@ -240,8 +240,14 @@
                     <span>New Terminal Tab</span>
                     <span class="key-combination">Ctrl + Shift + T</span>
                 </button> -->
-                <button class="command-button" onclick="sendCommandWithEnter('date | tr &quot; &quot; &quot;_&quot;')">
-                    <span>Send "date | tr " " "_""</span>
+                <button onclick="sendCommand('hello world')">Type "hello world"</button>
+                
+                <!-- Command with auto-Enter -->
+                <button onclick="sendCommand('whoami_enter')">Run "whoami" + Enter</button>
+                
+                <!-- Complex command with special characters -->
+                <button onclick="sendCommand('date | tr &quot; &quot; &quot;_&quot;_enter')">
+                    Run Date Command + Enter
                 </button>
             </div>
 <!--             <div class="command-description">
