@@ -37,6 +37,28 @@ $key_codes = [
     '-' => 0x2d, '=' => 0x2e, '[' => 0x2f, ']' => 0x30, '\\' => 0x31,
     ';' => 0x33, "'" => 0x34, '`' => 0x35, ',' => 0x36, '.' => 0x37,
     '/' => 0x38,
+    // ADD THESE MISSING CHARACTERS:
+    '|' => 0x31,    // Pipe (same as backslash with shift)
+    '"' => 0x34,    // Double quote (same as single quote with shift)  
+    '_' => 0x2d,    // Underscore (same as minus with shift)
+    '!' => 0x1e,    // Exclamation (same as 1 with shift)
+    '@' => 0x1f,    // At symbol (same as 2 with shift)
+    '#' => 0x20,    // Hash (same as 3 with shift)
+    '$' => 0x21,    // Dollar (same as 4 with shift)
+    '%' => 0x22,    // Percent (same as 5 with shift)
+    '^' => 0x23,    // Caret (same as 6 with shift)
+    '&' => 0x24,    // Ampersand (same as 7 with shift)
+    '*' => 0x25,    // Asterisk (same as 8 with shift)
+    '(' => 0x26,    // Open paren (same as 9 with shift)
+    ')' => 0x27,    // Close paren (same as 0 with shift)
+    ':' => 0x33,    // Colon (same as semicolon with shift)
+    '?' => 0x38,    // Question mark (same as slash with shift)
+    '+' => 0x2e,    // Plus (same as equals with shift)
+    '{' => 0x2f,    // Open curly (same as bracket with shift)
+    '}' => 0x30,    // Close curly (same as bracket with shift)
+    '~' => 0x35,    // Tilde (same as backtick with shift)
+    '<' => 0x36,    // Less than (same as comma with shift)
+    '>' => 0x37,    // Greater than (same as period with shift)
 ];
 
 // Modifier keys
@@ -159,11 +181,31 @@ function send_single_key($device, $key_code) {
 }
 
 function send_text($device, $text) {
-    global $key_codes;
-    $chars = str_split(strtolower($text));
+    global $key_codes, $modifiers;
+    
+    // Characters that require shift key
+    $shift_chars = [
+        '|', '"', '_', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', 
+        ':', '?', '+', '{', '}', '~', '<', '>'
+    ];
+    
+    $chars = str_split($text);
     foreach ($chars as $char) {
         if (isset($key_codes[$char])) {
-            send_single_key($device, $key_codes[$char]);
+            // Check if this character requires shift
+            if (in_array($char, $shift_chars)) {
+                // Send with shift modifier
+                send_key_combination($device, ['shift'], [$char]);
+            } else {
+                // Send without shift
+                send_single_key($device, $key_codes[$char]);
+            }
+        } else {
+            // If character not found, try lowercase version
+            $lower_char = strtolower($char);
+            if (isset($key_codes[$lower_char])) {
+                send_single_key($device, $key_codes[$lower_char]);
+            }
         }
     }
 }
@@ -191,11 +233,6 @@ try {
         send_key_combination($device, $cmd['modifiers'], $cmd['keys'] ?? []);
         echo "Linux command executed: " . $command;
     }
-    // Handle simple text (no plus signs, reasonable length)
-    elseif (strlen($command) <= 50 && strpos($command, '+') === false) {
-        send_text($device, $command);
-        echo "Text sent: " . $command;
-    }
     // Handle custom key combinations
     elseif (strpos($command, '+') !== false) {
         $parts = explode('+', $command);
@@ -212,6 +249,11 @@ try {
         
         send_key_combination($device, $modifiers_list, $keys_list);
         echo "Custom combination executed: " . $command;
+    }
+    // Handle all text commands (including pipes and quotes) - FIXED LINE
+    elseif (strlen($command) <= 100) {
+        send_text($device, $command);
+        echo "Text sent: " . $command;
     }
     else {
         http_response_code(400);
