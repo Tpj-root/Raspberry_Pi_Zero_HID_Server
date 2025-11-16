@@ -451,3 +451,36 @@ The interface includes:
 - Real-time status display
 
 This setup transforms your Raspberry Pi Zero into a web-controllable HID device that can simulate keyboard input on any connected computer!
+
+
+
+
+Here are **clean short notes** you can use for your README or HTML comments:
+
+---
+
+### **command-button (warning / orange)**
+
+* Use this style for **dangerous** or **system-impact** actions.
+* Example: shutdown, reboot, force-kill.
+* Orange warns the user to be careful.
+
+---
+
+### **command-button (gnome / default blue)**
+
+* Use this for **normal GNOME shortcuts**.
+* Example: Activities, Run Command, Switch Apps.
+* Safe actions, regular UI control.
+
+---
+
+### **command-button (green)**
+
+* Use this for **safe and positive actions**.
+* Example: open terminal, refresh, basic scripts.
+* Green indicates “OK”, “Go ahead”, or “safe to use”.
+
+---
+
+
