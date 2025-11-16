@@ -180,6 +180,30 @@ function send_single_key($device, $key_code) {
     usleep(50000); // 50ms delay
 }
 
+
+function sendCommandWithEnter(command) {
+    // First send the command and wait for it to complete
+    fetch('hid_handler.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'command=' + encodeURIComponent(command)
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log('Command completed:', data);
+        // Wait a bit then send Enter
+        setTimeout(() => {
+            sendCommand('enter');
+        }, 500);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
 function send_text($device, $text) {
     global $key_codes, $modifiers;
     
