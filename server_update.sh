@@ -18,7 +18,10 @@ fi
 
 # The folder that contains your website files.
 # It must exist inside the same directory as this script.
-SRC_DIR="$SCRIPT_DIR/server"
+#SRC_DIR="$SCRIPT_DIR/server"
+# php
+SRC_DIR="$SCRIPT_DIR/server_php"
+
 
 # The Apache web server's root folder where files must be copied.
 DEST_DIR="/var/www/html"

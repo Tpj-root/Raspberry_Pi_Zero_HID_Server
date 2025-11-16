@@ -11,6 +11,8 @@ This project uses a **Raspberry Pi Zero** to run a lightweight Apache web server
 ```bash
 sudo apt update
 sudo apt install apache2 -y
+sudo apt install php libapache2-mod-php -y
+
 ```
 
 ## 2. Start + Enable Apache
