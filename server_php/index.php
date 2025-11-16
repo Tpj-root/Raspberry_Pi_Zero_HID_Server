@@ -366,6 +366,14 @@
                     
                     <a href="hid_linux_commands.php" class="btn linux">Open Linux Commands</a>
                 </div>
+                
+                <!-- Linux Commands Card -->
+                <div class="card linux">
+                    <div class="card-icon">🐧</div>
+                    <h3>personal Commands</h3>
+                    <p>Linux my personal terminal shortcuts</p>
+                    <a href="hid_personal_commands.php" class="btn linux">Open Linux Commands</a>
+                </div>
             </div>
             
             <!-- Information Section -->
