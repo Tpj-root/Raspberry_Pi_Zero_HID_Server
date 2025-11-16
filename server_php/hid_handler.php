@@ -47,13 +47,17 @@ $modifiers = [
     'super' => 0x08, // Windows key
 ];
 
-// Special keys
+// Special keys - FIXED: Added proper HID codes
 $special_keys = [
     'enter' => 0x28,
     'esc' => 0x29,
     'backspace' => 0x2a,
     'tab' => 0x2b,
+    'space' => 0x2c,
     'capslock' => 0x39,
+    'f1' => 0x3a, 'f2' => 0x3b, 'f3' => 0x3c, 'f4' => 0x3d,
+    'f5' => 0x3e, 'f6' => 0x3f, 'f7' => 0x40, 'f8' => 0x41,
+    'f9' => 0x42, 'f10' => 0x43, 'f11' => 0x44, 'f12' => 0x45,
     'print' => 0x46,
     'scrolllock' => 0x47,
     'pause' => 0x48,
@@ -104,6 +108,11 @@ $linux_commands = [
     'shift+print' => ['modifiers' => ['shift'], 'keys' => ['print']],
 ];
 
+// Basic special commands that should work as single keys
+$basic_special_commands = [
+    'enter', 'tab', 'space', 'backspace', 'esc'
+];
+
 function send_key_combination($device, $modifier_list, $key_list = []) {
     $modifier_byte = 0x00;
     foreach ($modifier_list as $mod) {
@@ -136,19 +145,42 @@ function send_key_combination($device, $modifier_list, $key_list = []) {
     usleep(50000); // 50ms
 }
 
+function send_single_key($device, $key_code) {
+    // Simple function to send a single key press
+    // Key down: [modifier, reserved, key_code, 0, 0, 0, 0, 0]
+    $report = pack('C8', 0x00, 0x00, $key_code, 0x00, 0x00, 0x00, 0x00, 0x00);
+    file_put_contents($device, $report);
+    usleep(100000); // 100ms delay
+    
+    // Key up: all zeros
+    $report = pack('C8', 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
+    file_put_contents($device, $report);
+    usleep(50000); // 50ms delay
+}
+
 function send_text($device, $text) {
     global $key_codes;
     $chars = str_split(strtolower($text));
     foreach ($chars as $char) {
         if (isset($key_codes[$char])) {
-            send_key_combination($device, [], [$char]);
+            send_single_key($device, $key_codes[$char]);
         }
     }
 }
 
 try {
+    // First, check for basic special commands
+    if (in_array($command, ['enter', 'tab', 'space', 'backspace', 'esc'])) {
+        global $special_keys;
+        if (isset($special_keys[$command])) {
+            send_single_key($device, $special_keys[$command]);
+            echo "Special key sent: " . $command;
+        } else {
+            echo "Unknown special command: " . $command;
+        }
+    }
     // Check for Windows commands
-    if (isset($windows_commands[$command])) {
+    elseif (isset($windows_commands[$command])) {
         $cmd = $windows_commands[$command];
         send_key_combination($device, $cmd['modifiers'], $cmd['keys'] ?? []);
         echo "Windows command executed: " . $command;
@@ -159,26 +191,26 @@ try {
         send_key_combination($device, $cmd['modifiers'], $cmd['keys'] ?? []);
         echo "Linux command executed: " . $command;
     }
-    // Handle simple text
+    // Handle simple text (no plus signs, reasonable length)
     elseif (strlen($command) <= 50 && strpos($command, '+') === false) {
         send_text($device, $command);
         echo "Text sent: " . $command;
     }
-    // Handle custom key combinations - FIXED LINE (using strpos instead of str_contains)
+    // Handle custom key combinations
     elseif (strpos($command, '+') !== false) {
         $parts = explode('+', $command);
-        $modifiers = [];
-        $keys = [];
+        $modifiers_list = [];
+        $keys_list = [];
         
         foreach ($parts as $part) {
             if (in_array($part, ['ctrl', 'shift', 'alt', 'super', 'win'])) {
-                $modifiers[] = ($part === 'win') ? 'super' : $part;
+                $modifiers_list[] = ($part === 'win') ? 'super' : $part;
             } else {
-                $keys[] = $part;
+                $keys_list[] = $part;
             }
         }
         
-        send_key_combination($device, $modifiers, $keys);
+        send_key_combination($device, $modifiers_list, $keys_list);
         echo "Custom combination executed: " . $command;
     }
     else {
