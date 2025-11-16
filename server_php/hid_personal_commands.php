@@ -232,6 +232,56 @@
             </div> -->
         </div>
 
+        <div class="command-section">
+            <h3>💻Custom Commands</h3>
+            
+            <div class="button-group">
+<!--                 <button class="command-button terminal" onclick="sendCommand('ctrl+shift+t')">
+                    <span>New Terminal Tab</span>
+                    <span class="key-combination">Ctrl + Shift + T</span>
+                </button> -->
+                <button class="command-button" onclick="sendCommand('date | tr \" \" \"_\"')">
+                    <span>Send Current Date (with underscores)</span>
+                    <span class="key-combination">date | tr " " "_"</span>
+                </button>
+            </div>
+<!--             <div class="command-description">
+                <strong>Open Terminal:</strong> Opens new terminal window (common shortcut in Ubuntu/GNOME). <strong>New Terminal Tab:</strong> Opens new tab in existing terminal. <strong>Close Terminal:</strong> Closes terminal window or exits shell.
+            </div> -->
+        </div>
+
+        <!-- One-click text commands -->
+        <div class="button-group">
+            <h3>Quick Text Commands</h3>
+            <button class="command-button" onclick="sendCommand('Hello World!')">Send "Hello World!"</button>
+            <button class="command-button" onclick="sendCommand('sudo apt update')">Send "sudo apt update"</button>
+            <button class="command-button" onclick="sendCommand('ls -la')">Send "ls -la"</button>
+            <button class="command-button" onclick="sendCommand('pwd')">Send "pwd"</button>
+            <button class="command-button" onclick="sendCommand('whoami')">Send "whoami"</button>
+            <button class="command-button" onclick="sendCommand('date')">Send "date"</button>
+        </div>
+        
+        <!-- One-click special commands -->
+        <div class="button-group">
+            <h3>Quick Special Commands</h3>
+            <button class="command-button" onclick="sendCommand('enter')">↵ Enter Key</button>
+            <button class="command-button" onclick="sendCommand('tab')">⇥ Tab Key</button>
+            <button class="command-button" onclick="sendCommand('space')">␣ Space Bar</button>
+            <button class="command-button" onclick="sendCommand('backspace')">⌫ Backspace</button>
+            <button class="command-button" onclick="sendCommand('esc')">⎋ Escape</button>
+        </div>
+        
+        <!-- One-click system commands -->
+        <div class="button-group">
+            <h3>Quick System Commands</h3>
+            <button class="command-button" onclick="sendCommand('ctrl+c')">Ctrl + C (Copy/Interrupt)</button>
+            <button class="command-button" onclick="sendCommand('ctrl+v')">Ctrl + V (Paste)</button>
+            <button class="command-button" onclick="sendCommand('ctrl+a')">Ctrl + A (Select All)</button>
+            <button class="command-button" onclick="sendCommand('ctrl+z')">Ctrl + Z (Undo)</button>
+            <button class="command-button" onclick="sendCommand('ctrl+l')">Ctrl + L (Clear Terminal)</button>
+        </div>
+
+
         <!-- Desktop Environment Commands -->
 <!--         <div class="command-section">
             <h3>🖥️ Desktop Environment</h3>
