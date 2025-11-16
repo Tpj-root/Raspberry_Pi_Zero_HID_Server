@@ -258,9 +258,7 @@
             <button class="command-button" onclick="sendCommand('ls -la')">Send "ls -la"</button>
             <button class="command-button" onclick="sendCommand('pwd')">Send "pwd"</button>
             <button class="command-button" onclick="sendCommand('whoami')">Send "whoami"</button>
-            <button class="command-button" onclick="sendCommand('whoami'); setTimeout(() => sendCommand('enter'), 900)">
-                <span>Send "whoami" + Enter</span>
-            </button>
+            <button class="command-button" onclick="sendCommand('enter')">↵ Enter Key</button>
             <button class="command-button" onclick="sendCommand('date')">Send "date"</button>
         </div>
         
