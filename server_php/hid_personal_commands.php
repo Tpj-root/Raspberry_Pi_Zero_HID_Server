@@ -255,6 +255,36 @@
             </div> -->
         </div>
 
+
+        <div class="command-section">
+            <h3>💻Custom Commands</h3>
+            
+            <div class="button-group">
+<!--                 <button class="command-button terminal" onclick="sendCommand('ctrl+shift+t')">
+                    <span>New Terminal Tab</span>
+                    <span class="key-combination">Ctrl + Shift + T</span>
+                </button> -->
+                <button class="command-button" onclick="sendCommand('df -h_enter')">Run df</button>
+                            <div class="command-description">
+                <strong>Show disk usage of file systems.</strong> 
+            </div>
+                <!-- Command with auto-Enter -->
+                <button class="command-button" onclick="sendCommand('ping &quot;google.com&quot;_enter')">Run ping</button>
+                <div class="command-description">
+                <strong>Display network interfaces.</strong> 
+            </div>
+
+                <!-- Complex command with special characters -->
+                <button class="command-button" onclick="sendCommand('date | tr &quot; &quot; &quot;_&quot;_enter')">
+                    Run Date Command + Enter
+                </button>
+            </div>
+            <div class="command-description">
+                <strong>Activities Overview:</strong> 
+            </div>
+        </div>
+
+
         <!-- One-click text commands -->
         <div class="button-group">
             <h3>Quick Text Commands</h3>
