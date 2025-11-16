@@ -84,3 +84,18 @@ Raspberry_Pi_Zero_HID_Server/
 ---
 
 
+
+
+Set Proper Permissions
+
+```
+# Add www-data user to the appropriate group
+sudo usermod -a -G plugdev www-data
+
+# Set permissions for the HID device
+sudo chmod 666 /dev/hidg0
+
+# Make the permission change persistent (create udev rule)
+sudo nano /etc/udev/rules.d/99-hidg.rules
+
+```
