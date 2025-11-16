@@ -261,8 +261,11 @@
             <button class="command-button" onclick="sendCommand('enter')">↵ Enter Key</button>
 <!--             Use HTML entities 
  -->            
-            <button class="command-button" onclick="sendCommand('date | tr &quot; &quot; &quot;_&quot;')">
-    			<span>Send "date" </span>
+			<button class="command-button" onclick="sendCommand('date | tr " " "_"')">
+			    <span>Send "date | tr " " "_""</span>
+			</button>
+			<button class="command-button" onclick="sendCommand('date | tr \" \" \"_\"')">
+    			<span>Send "date  Escape with backslashes "</span>
 			</button>
         </div>
         
