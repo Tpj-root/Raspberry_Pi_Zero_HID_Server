@@ -3,10 +3,10 @@
 # Check root
 if [ "$EUID" -ne 0 ]; then
     echo "Restarting with root permissions..."
-    exec sudo "$0" "$@"
+    exec sudo bash "$(readlink -f "$0")" "$@"
 fi
 
-SCRIPT_DIR="$(dirname "$0")"
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 SRC_DIR="$SCRIPT_DIR/server"
 DEST_DIR="/var/www/html"
 
