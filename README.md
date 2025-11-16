@@ -99,3 +99,26 @@ sudo chmod 666 /dev/hidg0
 sudo nano /etc/udev/rules.d/99-hidg.rules
 
 ```
+
+
+find device 
+
+```
+firstpi@raspberrypi:~ $ 
+firstpi@raspberrypi:~ $ ls /dev/hidg0
+/dev/hidg0
+firstpi@raspberrypi:~ $ 
+firstpi@raspberrypi:~ $ 
+firstpi@raspberrypi:~ $ ls /sys/kernel/config/usb_gadget/hidg
+bcdDevice  bDeviceClass     bDeviceSubClass  configs    idProduct  max_speed  strings
+bcdUSB     bDeviceProtocol  bMaxPacketSize0  functions  idVendor   os_desc    UDC
+firstpi@raspberrypi:~ $ ls /sys/kernel/config/usb_gadget/hidg/functions/
+hid.usb0
+firstpi@raspberrypi:~ $ 
+
+
+firstpi@raspberrypi:~ $ cat /sys/kernel/config/usb_gadget/hidg/UDC
+20980000.usb
+firstpi@raspberrypi:~ $ 
+
+```

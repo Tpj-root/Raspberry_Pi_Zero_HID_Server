@@ -288,19 +288,19 @@
         <!-- Status Bar -->
         <div class="status-bar">
             <div class="status-item">
-                <div class="status-indicator"></div>
-                <span>HID Device: Active</span>
+                <div class="status-indicator" style="background: #2ecc71;"></div>
+                <span>HID Device: Active & Ready</span>
             </div>
             <div class="status-item">
-                <div class="status-indicator"></div>
+                <div class="status-indicator" style="background: #2ecc71;"></div>
                 <span>Web Server: Running</span>
             </div>
             <div class="status-item">
-                <div class="status-indicator"></div>
-                <span>Connection: Ready</span>
+                <div class="status-indicator" style="background: #2ecc71;"></div>
+                <span>HID Service: Enabled</span>
             </div>
             <div class="status-item">
-                <span>Device: Raspberry Pi Zero</span>
+                <span>Device: /dev/hidg0</span>
             </div>
         </div>
         
