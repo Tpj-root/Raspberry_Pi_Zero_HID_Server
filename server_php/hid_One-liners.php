@@ -62,12 +62,14 @@
             padding-bottom: 10px;
             margin-top: 0;
         }
-        .button-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
+		.button-group {
+		    display: grid;
+		    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		    gap: 20px;
+		    margin: 20px 0;
+		    align-items: start;
+		}
+
         .command-button {
             background: linear-gradient(135deg, #4caf50, #45a049);
             color: white;
@@ -170,33 +172,38 @@
 
 
         <div class="command-section">
-            <h3>💻Custom Commands</h3>
-            
+            <h3>💻 Custom Commands</h3>
+        
             <div class="button-group">
-<!--                 <button class="command-button terminal" onclick="sendCommand('ctrl+shift+t')">
-                    <span>New Terminal Tab</span>
-                    <span class="key-combination">Ctrl + Shift + T</span>
-                </button> -->
-                <button class="command-button" onclick="sendCommand('sudo !!')">Run "sudo !!"</button>
+        
+                <!-- Sudo last command -->
+                <button class="command-button terminal" onclick="sendCommand('sudo !!')">
+                    Run "sudo !!"
+                </button>
+        
                 <div class="command-description">
-                <strong>Run the last command as root</strong> </div>
-                
-                <!-- Command with auto-Enter -->
-                <button class="command-button" onclick="sendCommand('whoami_enter')">Run "whoami" + Enter</button>
-                
-                <!-- Complex command with special characters -->
-                <button class="command-button" onclick="sendCommand('date | tr &quot; &quot; &quot;_&quot;_enter')">
+                    <strong>Run the last command as root</strong>
+                    <p>This repeats your previous command with sudo.</p>
+                </div>
+        
+                <!-- Run whoami -->
+                <button class="command-button" onclick="sendCommand('whoami_enter')">
+                    Run "whoami" + Enter
+                </button>
+        
+                <!-- Run date | tr " " "_" -->
+                <button class="command-button" onclick="sendCommand('date | tr \" \" \"_\"_enter')">
                     Run Date Command + Enter
                 </button>
+        
+                <div class="command-description">
+                    <strong>Convert spaces to underscore in date</strong>
+                </div>
+        
             </div>
-<!--             <div class="command-description">
-                <strong>Open Terminal:</strong> Opens new terminal window (common shortcut in Ubuntu/GNOME). <strong>New Terminal Tab:</strong> Opens new tab in existing terminal. <strong>Close Terminal:</strong> Closes terminal window or exits shell.
-            </div> -->
         </div>
 
 
-        <div class="command-section">
-            <h3>oneliners Commands</h3>
             
 
 
