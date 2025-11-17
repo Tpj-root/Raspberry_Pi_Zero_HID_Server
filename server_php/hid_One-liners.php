@@ -117,7 +117,7 @@
             background: white;
             padding: 15px;
             border-radius: 8px;
-            margin: 10px 0;
+            margin: 0 0 0 0;
             border-left: 4px solid #263238;
             font-size: 0.65em;
             color: #455a64;
