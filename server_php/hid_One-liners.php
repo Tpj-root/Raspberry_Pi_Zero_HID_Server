@@ -113,6 +113,15 @@
             font-size: 0.95em;
             color: #455a64;
         }
+        .command-description_t {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #263238;
+            font-size: 0.65em;
+            color: #455a64;
+        }
         .message {
             padding: 15px;
             margin: 15px 0;
@@ -181,7 +190,7 @@
                     Run "sudo !!"
                 </button>
         
-                <div class="command-description">
+                <div class="command-description_t">
                     <strong>Run the last command as root</strong>
                     <p>This repeats your previous command with sudo.</p>
                 </div>
