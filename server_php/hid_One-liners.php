@@ -209,11 +209,118 @@
 				    <button class="command-button terminal" onclick="sendCommand('sudo !!_enter')">
 				        Run "sudo !!"
 				    </button>
-				
 				</div>
 
-        
-                <!-- Run whoami -->
+                <!-- Sudo last command -->
+<!--                 <div class="cmd-group">
+                	<div class="command-description_t">
+                        <strong>Run the last command as root</strong>
+                        <p>This repeats your previous command with sudo.</p>
+                    </div>
+                    <button class="command-button terminal" onclick="sendCommand('sudo !!_enter')">
+                        Run "sudo !!"
+                    </button>
+                </div> -->
+                
+                <!-- Simple HTTP Server -->
+                <div class="cmd-group">
+                	<div class="command-description_t">
+                        <strong>Serve current directory tree</strong>
+                        <p>Starts a simple web server on port 8000.</p>
+                    </div>
+                    <button class="command-button terminal" onclick="sendCommand('python -m SimpleHTTPServer_enter')">
+                        Run "python -m SimpleHTTPServer"
+                    </button>
+                </div>
+                
+                <!-- Replace part of previous command -->
+<!--                 <div class="cmd-group">
+                	<div class="command-description_t">
+                        <strong>Replace text in last command</strong>
+                        <p>Runs previous command but replaces a word.</p>
+                    </div>
+                    <button class="command-button terminal" onclick="sendCommand('^foo^bar_enter')">
+                        Run "^foo^bar"
+                    </button>
+                </div> -->
+                
+                <!-- Command editor -->
+                <div class="cmd-group">
+                	<div class="command-description_t">
+                        <strong>Edit a complex command</strong>
+                        <p>Opens an editor to type long or tricky commands.</p>
+                    </div>
+                    <button class="command-button terminal" onclick="sendCommand('ctrl-x e_enter')">
+                        Run "ctrl-x e"
+                    </button>
+                </div>
+                
+                <!-- Insert last arg -->
+                <div class="cmd-group">
+                	<div class="command-description_t">
+                        <strong>Insert last command argument</strong>
+                        <p>Puts the final argument of the previous command into the shell.</p>
+                    </div>
+                    <button class="command-button terminal" onclick="sendCommand('ALT+._enter')">
+                        Run "ALT+."
+                    </button>
+                </div>
+                
+                <!-- Mount column -->
+                <div class="cmd-group">
+                	<div class="command-description_t">
+                        <strong>Show mounted filesystems cleanly</strong>
+                        <p>Displays mounted filesystems in a nicely aligned layout.</p>
+                    </div>
+                    <button class="command-button terminal" onclick="sendCommand('mount | column -t_enter')">
+                        Run "mount | column -t"
+                    </button>
+                </div>
+                
+                <!-- Reset terminal -->
+                <div class="cmd-group">
+                	<div class="command-description_t">
+                        <strong>Reset broken terminal</strong>
+                        <p>Restores terminal if output is garbled.</p>
+                    </div>
+                    <button class="command-button terminal" onclick="sendCommand('reset_enter')">
+                        Run "reset"
+                    </button>
+                </div>
+                
+                <!-- External IP -->
+                <div class="cmd-group">
+                	<div class="command-description_t">
+                        <strong>Get external IP address</strong>
+                        <p>Fetches your public IP from ifconfig.me.</p>
+                    </div>
+                    <button class="command-button terminal" onclick="sendCommand('curl ifconfig.me_enter')">
+                        Run "curl ifconfig.me"
+                    </button>
+                </div>
+                
+                <!-- Run at midnight -->
+                <div class="cmd-group">
+                	<div class="command-description_t">
+                        <strong>Schedule a command</strong>
+                        <p>Executes the given command at midnight.</p>
+                    </div>
+                    <button class="command-button terminal" onclick="sendCommand('echo \"ls -l\" | at midnight_enter')">
+                        Run "echo 'ls -l' | at midnight"
+                    </button>
+                </div>
+                
+                <!-- ASCII table -->
+                <div class="cmd-group">
+                	<div class="command-description_t">
+                        <strong>Show ASCII table</strong>
+                        <p>Displays a reference ASCII table.</p>
+                    </div>
+                    <button class="command-button terminal" onclick="sendCommand('man ascii_enter')">
+                        Run "man ascii"
+                    </button>
+                </div>
+                                <!-- Run whoami -->
                 <button class="command-button" onclick="sendCommand('whoami_enter')">
                     Run "whoami" + Enter
                 </button>
