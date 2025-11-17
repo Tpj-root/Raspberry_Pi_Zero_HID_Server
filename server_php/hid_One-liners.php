@@ -432,11 +432,11 @@
                     </button>
                 </div>
                 
-                <!-- Updat              e twitter -->           
-                <div class              ="cmd-group">           
-                    <div c              lass="command-description_t">           
-                        <s              trong>Tweet from the terminal</strong>              
-                        <p              >Updates Twitter status using curl.</p>             
+                <!-- Update twitter -->           
+                <div class="cmd-group">           
+                    <div class="command-description_t">           
+                        <strong>Tweet from the terminal</strong>              
+                        <p>Updates Twitter status using curl.</p>             
                     </div>              
                     <button class="command-button terminal" onclick="sendCommand('curl -u user:pass -d status=\"Tweeting from the shell\" http://twitter.com/statuses/              update.xml_enter')">
                         Run "curl -u user …"
