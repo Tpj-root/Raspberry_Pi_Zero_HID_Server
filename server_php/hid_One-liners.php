@@ -178,7 +178,8 @@
                     <span class="key-combination">Ctrl + Shift + T</span>
                 </button> -->
                 <button class="command-button" onclick="sendCommand('sudo !!')">Run "sudo !!"</button>
-                <p>Run the last command as root</p>
+                <div class="command-description">
+                <strong>Run the last command as root</strong> </div>
                 
                 <!-- Command with auto-Enter -->
                 <button class="command-button" onclick="sendCommand('whoami_enter')">Run "whoami" + Enter</button>
