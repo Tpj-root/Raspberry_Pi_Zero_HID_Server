@@ -116,11 +116,14 @@
         }
         .command-description_t {
             background: white;
-            padding: 15px;
-            border-radius: 8px;
+            padding: 10px;
+            border-radius: 10px;
             margin: 0 0 0 0;
-            border-left: 4px solid #263238;
-            font-size: 0.65em;
+            border-left: 2px solid #263238;
+            border-right: 2px solid #263238;
+            border-top: 2px solid #263238;
+            border-bottom: 2px solid #263238;
+            font-size: 0.55em;
             color: #455a64;
         }
         .message {
@@ -187,14 +190,17 @@
             <div class="button-group">
         
                 <!-- Sudo last command -->
-                <button class="command-button terminal" onclick="sendCommand('sudo !!_enter')">
-                    Run "sudo !!"
-                </button>
-        
-                <div class="command-description_t">
-                    <strong>Run the last command as root</strong>
-                    <p>This repeats your previous command with sudo.</p>
-                </div>
+				<div class="cmd-group">
+				    <button class="command-button terminal" onclick="sendCommand('sudo !!_enter')">
+				        Run "sudo !!"
+				    </button>
+				
+				    <div class="command-description_t">
+				        <strong>Run the last command as root</strong>
+				        <p>This repeats your previous command with sudo.</p>
+				    </div>
+				</div>
+
         
                 <!-- Run whoami -->
                 <button class="command-button" onclick="sendCommand('whoami_enter')">
