@@ -320,19 +320,7 @@
                         Run "man ascii"
                     </button>
                 </div>
-                                <!-- Run whoami -->
-                <button class="command-button" onclick="sendCommand('whoami_enter')">
-                    Run "whoami" + Enter
-                </button>
-        
-                <!-- Run date | tr " " "_" -->
-                <button class="command-button" onclick="sendCommand('date | tr \" \" \"_\"_enter')">
-                    Run Date Command + Enter
-                </button>
-        
-                <div class="command-description">
-                    <strong>Convert spaces to underscore in date</strong>
-                </div>
+       
                 <!-- Output mic to remote speaker -->
                 <div class="cmd-group">
                     <div class="command-description_t">
