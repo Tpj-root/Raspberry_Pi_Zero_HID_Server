@@ -69,23 +69,27 @@
 		    margin: 20px 0;
 		    align-items: start;
 		}
+		
+		.command-button {
+		    background: linear-gradient(135deg, #4caf50, #45a049);
+		    margin: 0;
+		    color: white;
+		    border: none;
+		
+		    padding: 8px 12px; /* smaller height & width */
+		    border-radius: 6px; /* smaller corners */
+		
+		    cursor: pointer;
+		    font-size: 13px;  /* smaller text */
+		    font-weight: 500;
+		    text-align: left;
+		
+		    transition: all 0.3s ease;
+		    display: flex;
+		    justify-content: space-between;
+		    align-items: center;
+		}
 
-        .command-button {
-            background: linear-gradient(135deg, #4caf50, #45a049);
-            margin: 0;   /* remove outside space */
-            color: white;
-            border: none;
-            padding: 15px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 500;
-            text-align: left;
-            transition: all 0.3s ease;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
         .command-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -173,6 +177,12 @@
             opacity: 0.8;
             margin-left: 10px;
         }
+        .cmd-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0;   /* no space between button & description */
+        }
+
     </style>
 </head>
 <body>
@@ -191,14 +201,15 @@
         
                 <!-- Sudo last command -->
 				<div class="cmd-group">
+					<div class="command-description_t">
+				        <strong>Run the last command as root</strong>
+				        <p>This repeats your previous command with sudo.</p>
+				    </div>
+
 				    <button class="command-button terminal" onclick="sendCommand('sudo !!_enter')">
 				        Run "sudo !!"
 				    </button>
 				
-				    <div class="command-description_t">
-				        <strong>Run the last command as root</strong>
-				        <p>This repeats your previous command with sudo.</p>
-				    </div>
 				</div>
 
         
