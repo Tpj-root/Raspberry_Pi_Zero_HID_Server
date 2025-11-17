@@ -122,3 +122,9 @@ firstpi@raspberrypi:~ $ cat /sys/kernel/config/usb_gadget/hidg/UDC
 firstpi@raspberrypi:~ $ 
 
 ```
+
+❗ Warning
+🟢 Working
+❌ Error
+
+
