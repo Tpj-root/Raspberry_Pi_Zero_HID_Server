@@ -26,7 +26,7 @@
             padding: 30px;
             border-radius: 12px;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
         .header h1 {
             margin: 0;
