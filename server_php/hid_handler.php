@@ -231,11 +231,20 @@ function send_key_combination($device, $modifier_list, $key_list = []) {
     // Send key down event (press the keys)
     $report = chr($modifier_byte) . chr(0x00) . implode('', array_map('chr', $key_bytes));
     file_put_contents($device, $report);
-    usleep(50000); // 50ms delay - hold keys for a moment
+    //usleep(50000); // 50ms delay - hold keys for a moment
+    // Best setting for FAST + RELIABLE
+    //usleep(5000); // 5 
+    //If you want EXTREME speed (but test first)
+    usleep(1000); // 1 ms
+
     
     // Send key up event (release all keys)
     file_put_contents($device, "\x00\x00\x00\x00\x00\x00\x00\x00");
-    usleep(50000); // 50ms delay before next action
+    //usleep(50000); // 50ms delay - hold keys for a moment
+    // Best setting for FAST + RELIABLE
+    //usleep(5000); // 5 
+    //If you want EXTREME speed (but test first)
+    usleep(1000); // 1 ms
 }
 
 /**
@@ -249,12 +258,22 @@ function send_single_key($device, $key_code) {
     // Format: [modifier=0, reserved=0, key_code, 0, 0, 0, 0, 0]
     $report = pack('C8', 0x00, 0x00, $key_code, 0x00, 0x00, 0x00, 0x00, 0x00);
     file_put_contents($device, $report);
-    usleep(100000); // 100ms delay - hold key for realistic typing
+    //usleep(100000); // 100ms delay - hold key for realistic typing
+    //usleep(50000); // 50ms delay - hold keys for a moment
+    // Best setting for FAST + RELIABLE
+    //usleep(5000); // 5 
+    //If you want EXTREME speed (but test first)
+    usleep(1000); // 1 ms
     
     // Key up: release the key
     $report = pack('C8', 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
     file_put_contents($device, $report);
-    usleep(50000); // 50ms delay before next key
+    //usleep(50000); // 50ms delay before next key
+    //usleep(50000); // 50ms delay - hold keys for a moment
+    // Best setting for FAST + RELIABLE
+    //usleep(5000); // 5 
+    //If you want EXTREME speed (but test first)
+    usleep(1000); // 1 ms
 }
 
 /**
@@ -341,7 +360,12 @@ function sendCommandWithEnter($device, $command, $enter_delay = 1000) {
         
         // Add random delay between characters for human-like typing
         // Range: 80-150ms between keystrokes
-        usleep(rand(80000, 150000));
+        //usleep(rand(80000, 150000));
+        //usleep(50000); // 50ms delay - hold keys for a moment
+        // Best setting for FAST + RELIABLE
+        //usleep(5000); // 5 
+        //If you want EXTREME speed (but test first)
+        usleep(1000); // 1 ms
     }
     
     // Calculate dynamic delay based on command length
