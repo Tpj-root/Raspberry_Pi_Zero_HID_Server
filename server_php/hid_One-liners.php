@@ -72,6 +72,7 @@
 
         .command-button {
             background: linear-gradient(135deg, #4caf50, #45a049);
+            margin: 0;   /* remove outside space */
             color: white;
             border: none;
             padding: 15px 20px;
