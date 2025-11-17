@@ -737,45 +737,45 @@
                         Run "ifconfig | convert"
                     </button>
                 </div>
-<!-- Add Password Protection -->
-<div class="cmd-group">
-    <div class="command-description_t">
-        <strong>Password protect a file (vim)</strong>
-        <p>Edit a file with encryption.</p>
-    </div>
-    <button class="command-button terminal" onclick="sendCommand('vim -x <FILENAME>_enter')">
-        Run "vim -x"
-    </button>
-</div>
+                <!-- Add Password Protection -->
+                <div class="cmd-group">
+                    <div class="command-description_t">
+                        <strong>Password protect a file (vim)</strong>
+                        <p>Edit a file with encryption.</p>
+                    </div>
+                    <button class="command-button terminal" onclick="sendCommand('vim -x <FILENAME>_enter')">
+                        Run "vim -x"
+                    </button>
+                </div>
+                
+                <!-- Remove duplicate lines -->
+                <div class="cmd-group">
+                    <div class="command-description_t">
+                        <strong>Remove duplicate lines</strong>
+                        <p>Remove duplicates without sorting.</p>
+                    </div>
+                    <button class="command-button terminal" onclick="sendCommand('awk \\''!x[$0]++\\'' <file>_enter')">
+                        Run "awk remove dup"
+                    </button>
+                </div>
 
-<!-- Remove duplicate lines -->
-<div class="cmd-group">
-    <div class="command-description_t">
-        <strong>Remove duplicate lines</strong>
-        <p>Remove duplicates without sorting.</p>
-    </div>
-    <button class="command-button terminal" onclick="sendCommand('awk \\''!x[$0]++\\'' <file>_enter')">
-        Run "awk remove dup"
-    </button>
-</div>
-
-<!-- SSH copy key -->
-<div class="cmd-group">
-    <div class="command-description_t">
-        <strong>SSH key copy</strong>
-        <p>Enable passwordless login.</p>
-    </div>
-    <button class="command-button terminal" onclick="sendCommand('ssh-copy-id username@hostname_enter')">
-        Run "ssh-copy-id"
-    </button>
-</div>
-
-<!-- Duplicate file finder -->
-<div class="cmd-group">
-    <div class="command-description_t">
-        <strong>Find duplicate files</strong>
-        <p>Match by size + MD5 hash.</p>
-    </div>
+                <!-- SSH copy key -->
+                <div class="cmd-group">
+                    <div class="command-description_t">
+                        <strong>SSH key copy</strong>
+                        <p>Enable passwordless login.</p>
+                    </div>
+                    <button class="command-button terminal" onclick="sendCommand('ssh-copy-id username@hostname_enter')">
+                        Run "ssh-copy-id"
+                    </button>
+                </div>
+                
+                 <!-- Duplicate file finder -->
+                <div class="cmd-group">
+                    <div class="command-description_t">
+                        <strong>Find duplicate files</strong>
+                        <p>Match by size + MD5 hash.</p>
+                    </div>
                     <button class="command-button terminal" onclick="sendCommand('find -not -empty -type f -printf \\\"%s\\\\n\\\" | sort -rn | uniq -d | xargs -I{} -n1 find -type f               -size {}c -print0 | xargs -0 md5sum | sort | uniq -w32 --all-repeated=separate_enter')">
                         Run "find duplicates"
                     </button>
@@ -1247,8 +1247,6 @@
 
 
             
-
-
         <!-- One-click text commands -->
         <div class="button-group">
             <h3>Quick Text Commands</h3>
