@@ -858,11 +858,11 @@
                     </button>
                 </div>
                 
-                <!-- Matri              x style rain            -->         
-                <div class              ="cmd-group">           
-                    <div c              lass="command-description_t             ">          
-                        <s              trong>Matrix style</strong>             
-                        <p              >Green digital rain effect.</p>             
+                <!-- Matrix style rain-->         
+                <div class="cmd-group">           
+                    <div class="command-description_t">          
+                        <strong>Matrix style</strong>             
+                        <p>Green digital rain effect.</p>             
                     </div>              
                     <button class="command-button terminal" onclick="sendCommand('tr -c \\\"[:digit:]\\\" \\\" \\\" < /dev/urandom | dd cbs=$COLUMNS conv=unblock |                 GREP_COLOR=\\\"1;32\\\" grep --color \\\"[^ ]\\\"_enter')">
                         Run Matrix
@@ -891,11 +891,11 @@
                     </button>
                 </div>
                 
-                <!-- Googl              e Translate f           unction -->         
-                <div class              ="cmd-group">           
-                    <div c              lass="command-description_t">           
-                        <s              trong>Translate text</strong>           
-                        <p              >Quick Google Translate from terminal.</p>              
+                <!-- Google Translate function -->         
+                <div class="cmd-group">           
+                    <div class="command-description_t">           
+                        <strong>Translate text</strong>           
+                        <p>Quick Google Translate from terminal.</p>              
                     </div>              
                     <button class="command-button terminal" onclick="sendCommand('translate(){ wget -qO- \\\"http://ajax.googleapis.com/ajax/services/language/             translate?v=1.0&q=$1&langpair=$2|${3:-en}\\\" | sed \\\"s/.*\\\"translatedText\\\":\\\"\\([^\\\"]*\\)\\\".*}/\\\\1/\\\"; } _enter')">
                         Run translate()
@@ -935,11 +935,11 @@
                     </button>
                 </div>
                 
-                <!-- Graph              ical tree -->           
-                <div class              ="cmd-group">           
-                    <div c              lass="command-descriptio            n_t">           
-                        <s              trong>Tree view</strong>            
-                        <p              >ASCII directory structure.</p>             
+                <!-- Graphical tree -->           
+                <div class="cmd-group">           
+                    <div class="command-description_t">           
+                        <strong>Tree view</strong>            
+                        <p>ASCII directory structure.</p>             
                     </div>              
                     <button class="command-button terminal" onclick="sendCommand('ls -R | grep \\\":$\\\" | sed -e \\\"s/:$//\\\" -e \\\"s/[^-][^\\/]*\\//--/g\\\" -e \\\"s/^/   /\\\"              -e \\\"s/-/|/\\\" _enter')">
                         Run tree
@@ -1012,11 +1012,11 @@
                     </button>
                 </div>
                 
-                <!-- Strea              m YouTube to            mplayer -->         
-                <div class              ="cmd-group">           
-                    <div c              lass="command-description_t"            >           
-                        <s              trong>YT to mplayer</strong>            
-                        <p              >Play YouTube URL directly.</p>             
+                <!-- Stream YouTube to mplayer -->         
+                <div class="cmd-group">           
+                    <div class="command-description_t">           
+                        <strong>YT to mplayer</strong>            
+                        <p>Play YouTube URL directly.</p>             
                     </div>              
                     <button class="command-button terminal" onclick="sendCommand('i=\\\"8uyxVmdaJ-w\\\"; mplayer -fs $(curl -s \\\"http://www.youtube.com/              get_video_info?&video_id=$i\\\" | echo -e $(sed \\\"s/%/\\\\x/g;s/.*\\\\(v[0-9]\\\\.lscache.*\\\\)/http:\\/\\/\\\\1/g\\\") | grep -oP \\\"^[^|,]*\\\" )_enter')">
                         Run YT stream
@@ -1122,11 +1122,11 @@
                     </button>
                 </div>
                 
-                <!-- conne              ctions per ho           st -->          
-                <div class              ="cmd-group">           
-                    <div c              lass="command-description_t">           
-                        <s              trong>Connection graph</strong>             
-                        <p              >Count active connections by host.</p>              
+                <!-- connections per host -->          
+                <div class="cmd-group">           
+                    <div class="command-description_t">           
+                        <strong>Connection graph</strong>             
+                        <p>Count active connections by host.</p>              
                     </div>              
                     <button class="command-button terminal" onclick="sendCommand('netstat -an | grep ESTABLISHED | awk \\\"{ print $5 }\\\" | awk -F: \\\"{ print $1 }\\\" | sort |                 uniq -c | awk \\\"{ printf(\\\\\\\"%s\\\\t%s\\\\t\\\\\\\",$2,$1); for(i=0;i<$1;i++){printf(\\\\\\\"*\\\\\\\")}; print \\\\\\\"\\\\\\\" }\\\"_enter')">
                         Run connection graph
