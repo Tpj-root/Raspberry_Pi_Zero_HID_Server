@@ -374,6 +374,16 @@
                     <p>Linux my personal terminal shortcuts</p>
                     <a href="hid_personal_commands.php" class="btn linux">Open Linux Commands</a>
                 </div>
+                <!-- Linux Commands Card -->
+                <div class="card linux">
+                    <div class="card-icon">🐧</div>
+                    <h3>One-liners Commands</h3>
+                    <p>One-liners Commands shortcuts</p>
+                    <a href="hid_One-liners.php" class="btn linux">Open Linux Commands</a>
+                </div>
+
+
+
             </div>
             
             <!-- Information Section -->
