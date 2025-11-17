@@ -177,7 +177,7 @@
             <div class="button-group">
         
                 <!-- Sudo last command -->
-                <button class="command-button terminal" onclick="sendCommand('sudo !!')">
+                <button class="command-button terminal" onclick="sendCommand('sudo !!_enter')">
                     Run "sudo !!"
                 </button>
         
