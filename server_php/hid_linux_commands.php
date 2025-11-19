@@ -290,51 +290,47 @@
             <p><strong>Terminal Commands:</strong> Terminal shortcuts work in most Linux terminal emulators (GNOME Terminal, Konsole, xterm, etc.).</p>
             <p><strong>Window Managers:</strong> Some commands may behave differently in tiling window managers like i3 or sway.</p>
         </div>
-
-			<div id="message" class="message"></div>
-			
-			<!-- Terminal Commands -->
-			<div class="command-section">
-			    <h3>💻 Terminal Commands</h3>
-			    
-			    <div class="button-group">
-			        <div class="button-container">
-			            <button class="command-button terminal" onclick="sendCommand('ctrl+alt+t', this)">
-			                <div class="button-content">
-			                    <span class="button-text">
-			                        Open Terminal <span class="desktop-environment">(GNOME/Ubuntu)</span>
-			                    </span>
-			                    <span class="key-combination">Ctrl + Alt + T</span>
-			                </div>
-			                <div class="button-loader"></div>
-			            </button>
-			            <div class="button-feedback" id="feedback-ctrl+alt+t"></div>
-			        </div>
-			        
-			        <div class="button-container">
-			            <button class="command-button terminal" onclick="sendCommand('ctrl+shift+t', this)">
-			                <div class="button-content">
-			                    <span class="button-text">New Terminal Tab</span>
-			                    <span class="key-combination">Ctrl + Shift + T</span>
-			                </div>
-			                <div class="button-loader"></div>
-			            </button>
-			            <div class="button-feedback" id="feedback-ctrl+shift+t"></div>
-			        </div>
-			        
-			        <div class="button-container">
-			            <button class="command-button terminal" onclick="sendCommand('ctrl+d', this)">
-			                <div class="button-content">
-			                    <span class="button-text">Close Terminal</span>
-			                    <span class="key-combination">Ctrl + D</span>
-			                </div>
-			                <div class="button-loader"></div>
-			            </button>
-			            <div class="button-feedback" id="feedback-ctrl+d"></div>
-			        </div>
-			    </div>
-			</div>
-            <div class="command-description">
+		<div id="message" class="message"></div>
+		
+		<!-- Terminal Commands -->
+		<div class="command-section">
+		    <h3>💻 Terminal Commands</h3>
+		    
+		    <div class="button-group">
+		        <!-- Option 1: Simple status display -->
+		        <div class="button-with-status">
+		            <button class="command-button terminal" onclick="sendCommand('ctrl+alt+t', this)">
+		                <span>Open Terminal <span class="desktop-environment">(GNOME/Ubuntu)</span></span>
+		                <span class="key-combination">Ctrl + Alt + T</span>
+		            </button>
+		            <span class="button-status" id="status-ctrl+alt+t"></span>
+		        </div>
+		        
+		        <!-- Option 2: Enhanced with loader -->
+		        <div class="button-container">
+		            <button class="command-button terminal" onclick="sendCommand('ctrl+shift+t', this)">
+		                <div class="button-content">
+		                    <span class="button-text">New Terminal Tab</span>
+		                    <span class="key-combination">Ctrl + Shift + T</span>
+		                </div>
+		                <div class="button-loader"></div>
+		            </button>
+		            <div class="button-feedback" id="feedback-ctrl+shift+t"></div>
+		        </div>
+		        
+		        <div class="button-container">
+		            <button class="command-button terminal" onclick="sendCommand('ctrl+d', this)">
+		                <div class="button-content">
+		                    <span class="button-text">Close Terminal</span>
+		                    <span class="key-combination">Ctrl + D</span>
+		                </div>
+		                <div class="button-loader"></div>
+		            </button>
+		            <div class="button-feedback" id="feedback-ctrl+d"></div>
+		        </div>
+		    </div>
+		</div>
+		            <div class="command-description">
                 <strong>Open Terminal:</strong> Opens new terminal window (common shortcut in Ubuntu/GNOME). <strong>New Terminal Tab:</strong> Opens new tab in existing terminal. <strong>Close Terminal:</strong> Closes terminal window or exits shell.
             </div>
 
@@ -513,50 +509,149 @@
         </div>
     </div>
 
-    <script>
-        function showMessage(text, type) {
-            const messageDiv = document.getElementById('message');
-            messageDiv.textContent = text;
-            messageDiv.className = 'message ' + type;
-            messageDiv.style.display = 'block';
-            setTimeout(() => {
-                messageDiv.style.display = 'none';
-            }, 4000);
-        }
+<script>
+    function showMessage(text, type) {
+        const messageDiv = document.getElementById('message');
+        messageDiv.textContent = text;
+        messageDiv.className = 'message ' + type;
+        messageDiv.style.display = 'block';
+        setTimeout(() => {
+            messageDiv.style.display = 'none';
+        }, 4000);
+    }
 
-        function sendCommand(command) {
-            fetch('hid_handler.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: 'command=' + encodeURIComponent(command)
-            })
-            .then(response => response.text())
-            .then(data => {
-                showMessage('✅ Linux command executed: ' + command, 'success');
-            })
-            .catch(error => {
-                showMessage('❌ Error sending command: ' + error, 'error');
-            });
+    function sendCommand(command, buttonElement = null) {
+        // Show sending state for button if provided
+        if (buttonElement) {
+            showButtonState(buttonElement, 'sending', 'Sending...');
         }
+        
+        // Show main message
+        showMessage('🔄 Sending command: ' + command, 'sending');
 
-        function sendCustomLinuxCommand() {
-            const command = document.getElementById('customLinuxCommand').value;
-            if (command) {
-                sendCommand(command);
-                document.getElementById('customLinuxCommand').value = '';
-            } else {
-                showMessage('⚠️ Please enter a custom command', 'error');
+        fetch('hid_handler.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'command=' + encodeURIComponent(command)
+        })
+        .then(response => response.text())
+        .then(data => {
+            // Show success state for button if provided
+            if (buttonElement) {
+                showButtonState(buttonElement, 'success', 'Sent!');
             }
-        }
-
-        // Handle Enter key in custom command input
-        document.getElementById('customLinuxCommand').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendCustomLinuxCommand();
+            showMessage('✅ Linux command executed: ' + command, 'success');
+            
+            // Reset button state after 2 seconds
+            if (buttonElement) {
+                setTimeout(() => {
+                    resetButtonState(buttonElement);
+                }, 2000);
+            }
+        })
+        .catch(error => {
+            // Show error state for button if provided
+            if (buttonElement) {
+                showButtonState(buttonElement, 'error', 'Failed!');
+            }
+            showMessage('❌ Error sending command: ' + error, 'error');
+            
+            // Reset button state after 2 seconds
+            if (buttonElement) {
+                setTimeout(() => {
+                    resetButtonState(buttonElement);
+                }, 2000);
             }
         });
-    </script>
+    }
+
+    // Helper functions for button states
+    function showButtonState(buttonElement, state, message) {
+        // Extract command from onclick attribute
+        const command = buttonElement.getAttribute('onclick').match(/'([^']+)'/)[1];
+        
+        // Remove any existing state classes
+        buttonElement.classList.remove('loading', 'success', 'error');
+        
+        // Add current state
+        buttonElement.classList.add(state);
+        
+        // Show loader if available
+        const loader = buttonElement.querySelector('.button-loader');
+        if (loader) {
+            loader.style.display = state === 'sending' ? 'block' : 'none';
+        }
+        
+        // Update status message
+        const statusElement = document.getElementById(`status-${command}`) || 
+                             document.getElementById(`feedback-${command}`) ||
+                             buttonElement.parentNode.querySelector('.button-status') ||
+                             buttonElement.parentNode.querySelector('.button-feedback');
+        
+        if (statusElement) {
+            statusElement.textContent = message;
+            statusElement.className = statusElement.classList.contains('button-status') ? 
+                                    `button-status ${state}` : `button-feedback ${state}`;
+        }
+    }
+
+    function resetButtonState(buttonElement) {
+        // Remove state classes from button
+        buttonElement.classList.remove('loading', 'success', 'error');
+        
+        // Hide loader
+        const loader = buttonElement.querySelector('.button-loader');
+        if (loader) {
+            loader.style.display = 'none';
+        }
+        
+        // Extract command from onclick attribute
+        const command = buttonElement.getAttribute('onclick').match(/'([^']+)'/)[1];
+        
+        // Reset status message
+        const statusElement = document.getElementById(`status-${command}`) || 
+                             document.getElementById(`feedback-${command}`) ||
+                             buttonElement.parentNode.querySelector('.button-status') ||
+                             buttonElement.parentNode.querySelector('.button-feedback');
+        
+        if (statusElement) {
+            statusElement.textContent = '';
+            statusElement.className = statusElement.classList.contains('button-status') ? 
+                                    'button-status' : 'button-feedback';
+        }
+    }
+
+    function sendCustomLinuxCommand() {
+        const command = document.getElementById('customLinuxCommand').value;
+        if (command) {
+            sendCommand(command);
+            document.getElementById('customLinuxCommand').value = '';
+        } else {
+            showMessage('⚠️ Please enter a custom command', 'error');
+        }
+    }
+
+    // Handle Enter key in custom command input
+    document.getElementById('customLinuxCommand').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            sendCustomLinuxCommand();
+        }
+    });
+
+    // Add click animation to all buttons
+    document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.command-button');
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.transform = 'translateY(2px)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+    });
+</script>
 </body>
 </html>
