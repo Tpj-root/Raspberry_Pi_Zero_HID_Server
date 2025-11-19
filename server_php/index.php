@@ -381,6 +381,15 @@
                     <p>One-liners Commands shortcuts</p>
                     <a href="hid_One-liners.php" class="btn linux">Open Linux Commands</a>
                 </div>
+                <!-- Linux Commands Card -->
+                <div class="card linux">
+                    <div class="card-icon">🐧</div>
+                    <h3>hid_keyboard keys</h3>
+                    <p>hid_keyboard shortcuts</p>
+                    <a href="hid_keyboard.php" class="btn linux">Open Linux Commands</a>
+                </div>
+
+
 
 
 
