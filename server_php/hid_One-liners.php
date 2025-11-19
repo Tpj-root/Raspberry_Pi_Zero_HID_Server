@@ -225,11 +225,12 @@
                 <!-- Simple HTTP Server -->
                 <div class="cmd-group">
                 	<div class="command-description_t">
-                        <strong>❌ Serve current directory tree</strong>
+                        <strong> Serve current directory tree</strong>
+                        <p>Tested Python 3.13.5.</p>
                         <p>Starts a simple web server on port 8000.</p>
                     </div>
-                    <button class="command-button terminal" onclick="sendCommand('python -m SimpleHTTPServer_enter')">
-                        Run "python -m SimpleHTTPServer"
+                    <button class="command-button terminal" onclick="sendCommand('python3 -m http.server 8000_enter')">
+                        Run "python3 -m http.server 8000"
                     </button>
                 </div>
                 
