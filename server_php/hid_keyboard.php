@@ -297,8 +297,10 @@
 
         <div class="keyboard-controls">
             <button class="control-button" onclick="sendText('Hello World!')">Type "Hello World!"</button>
+            <button class="control-button" onclick="sendText('Testing 123')">Type "Testing 123"</button>
             <button class="control-button" onclick="sendCommand('enter')">Press Enter</button>
             <button class="control-button" onclick="sendCommand('tab')">Press Tab</button>
+            <button class="control-button" onclick="testCommonShortcuts()">Test Common Shortcuts</button>
             <button class="control-button" onclick="clearActiveKeys()">Clear All Highlights</button>
         </div>
 
@@ -569,6 +571,63 @@
             
             showMessage('✅ All keys cleared', 'success');
         }
+
+        function testCommonShortcuts() {
+            showMessage('🔄 Testing common shortcuts...', 'success');
+            
+            // Test sequence of common shortcuts
+            const shortcuts = [
+                {cmd: 'ctrl+c', desc: 'Copy'},
+                {cmd: 'ctrl+v', desc: 'Paste'}, 
+                {cmd: 'ctrl+a', desc: 'Select All'},
+                {cmd: 'ctrl+s', desc: 'Save'},
+                {cmd: 'ctrl+z', desc: 'Undo'}
+            ];
+            
+            let delay = 0;
+            shortcuts.forEach(shortcut => {
+                setTimeout(() => {
+                    sendCommand(shortcut.cmd);
+                    showMessage(`✅ Testing: ${shortcut.desc} (${shortcut.cmd})`, 'success');
+                }, delay);
+                delay += 1000; // 1 second between each
+            });
+        }
+        
+        function testNavigation() {
+            showMessage('🔄 Testing navigation keys...', 'success');
+            
+            const navKeys = ['up', 'down', 'left', 'right', 'home', 'end'];
+            
+            let delay = 0;
+            navKeys.forEach(key => {
+                setTimeout(() => {
+                    sendCommand(key);
+                }, delay);
+                delay += 500; // 0.5 seconds between each
+            });
+        }
+        
+        // Quick function to test the number pad
+        function testNumpad() {
+            showMessage('🔄 Testing number pad...', 'success');
+            sendText('123');
+            setTimeout(() => sendCommand('enter'), 300);
+            setTimeout(() => sendText('456'), 600);
+            setTimeout(() => sendCommand('enter'), 900);
+        }
+        
+        // Function to open terminal and run a command (Linux)
+        function openTerminalAndCommand() {
+            showMessage('🔄 Opening terminal and running command...', 'success');
+            
+            sendCommand('ctrl+alt+t'); // Open terminal
+            setTimeout(() => {
+                sendText('echo "Hello from Virtual Keyboard!"');
+                setTimeout(() => sendCommand('enter'), 200);
+            }, 1000);
+        }
+
 
         // Touch device support
         document.addEventListener('touchstart', function(e) {
