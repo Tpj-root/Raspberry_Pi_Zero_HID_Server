@@ -186,19 +186,31 @@ body {
 
 /* Option 1 Styles */
 .button-with-status {
+    margin-bottom: 25px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.button-wrapper {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
     margin-bottom: 10px;
 }
-
+.button-wrapper .command-button {
+    flex: 1;
+    min-height: 60px;
+}
 .button-status {
     font-size: 12px;
-    padding: 4px 8px;
+    padding: 8px 12px;
     border-radius: 4px;
     min-width: 80px;
     text-align: center;
     transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 .button-status.sending {

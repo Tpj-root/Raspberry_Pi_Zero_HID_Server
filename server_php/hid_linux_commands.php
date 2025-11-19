@@ -31,48 +31,63 @@
             <p><strong>Terminal Commands:</strong> Terminal shortcuts work in most Linux terminal emulators (GNOME Terminal, Konsole, xterm, etc.).</p>
             <p><strong>Window Managers:</strong> Some commands may behave differently in tiling window managers like i3 or sway.</p>
         </div>
-		<div id="message" class="message"></div>
-		
-		<!-- Terminal Commands -->
-		<div class="command-section">
-		    <h3>💻 Terminal Commands</h3>
-		    
-		    <div class="button-group">
-		        <!-- Option 1: Simple status display -->
-		        <div class="button-with-status">
-		            <button class="command-button terminal" onclick="sendCommand('ctrl+alt+t', this)">
-		                <span>Open Terminal <span class="desktop-environment">(GNOME/Ubuntu)</span></span>
-		                <span class="key-combination">Ctrl + Alt + T</span>
-		            </button>
-		            <span class="button-status" id="status-ctrl+alt+t"></span>
-		        </div>
-		        
-		        <!-- Option 2: Enhanced with loader -->
-		        <div class="button-container">
-		            <button class="command-button terminal" onclick="sendCommand('ctrl+shift+t', this)">
-		                <div class="button-content">
-		                    <span class="button-text">New Terminal Tab</span>
-		                    <span class="key-combination">Ctrl + Shift + T</span>
-		                </div>
-		                <div class="button-loader"></div>
-		            </button>
-		            <div class="button-feedback" id="feedback-ctrl+shift+t"></div>
-		        </div>
-		        
-		        <div class="button-container">
-		            <button class="command-button terminal" onclick="sendCommand('ctrl+d', this)">
-		                <div class="button-content">
-		                    <span class="button-text">Close Terminal</span>
-		                    <span class="key-combination">Ctrl + D</span>
-		                </div>
-		                <div class="button-loader"></div>
-		            </button>
-		            <div class="button-feedback" id="feedback-ctrl+d"></div>
-		        </div>
-		    </div>
-		            <div class="command-description">
-                <strong>Open Terminal:</strong> Opens new terminal window (common shortcut in Ubuntu/GNOME). <strong>New Terminal Tab:</strong> Opens new tab in existing terminal. <strong>Close Terminal:</strong> Closes terminal window or exits shell.
+<div id="message" class="message"></div>
+
+<!-- Terminal Commands -->
+<div class="command-section">
+    <h3>💻 Terminal Commands</h3>
+    
+    <div class="button-group">
+        <!-- Side status version -->
+        <div class="button-with-status">
+            <div class="button-wrapper">
+                <button class="command-button terminal" onclick="sendCommand('ctrl+alt+t', this)">
+                    <div class="button-content">
+                        <span class="button-text">Open Terminal <span class="desktop-environment">(GNOME/Ubuntu)</span></span>
+                        <span class="key-combination">Ctrl + Alt + T</span>
+                    </div>
+                    <div class="button-loader"></div>
+                </button>
+                <span class="button-status" id="status-ctrl+alt+t"></span>
             </div>
+            <div class="command-description">
+                <strong>Open Terminal:</strong> Opens new terminal window (common shortcut in Ubuntu/GNOME desktop environments).
+            </div>
+        </div>
+        
+        <div class="button-with-status">
+            <div class="button-wrapper">
+                <button class="command-button terminal" onclick="sendCommand('ctrl+shift+t', this)">
+                    <div class="button-content">
+                        <span class="button-text">New Terminal Tab</span>
+                        <span class="key-combination">Ctrl + Shift + T</span>
+                    </div>
+                    <div class="button-loader"></div>
+                </button>
+                <span class="button-status" id="status-ctrl+shift+t"></span>
+            </div>
+            <div class="command-description">
+                <strong>New Terminal Tab:</strong> Opens a new tab in the currently focused terminal window (works in most terminal emulators).
+            </div>
+        </div>
+        
+        <div class="button-with-status">
+            <div class="button-wrapper">
+                <button class="command-button terminal" onclick="sendCommand('ctrl+d', this)">
+                    <div class="button-content">
+                        <span class="button-text">Close Terminal</span>
+                        <span class="key-combination">Ctrl + D</span>
+                    </div>
+                    <div class="button-loader"></div>
+                </button>
+                <span class="button-status" id="status-ctrl+d"></span>
+            </div>
+            <div class="command-description">
+                <strong>Close Terminal:</strong> Closes terminal window or exits current shell session (sends EOF signal).
+            </div>
+        </div>
+    </div>
+</div>
 
             <div class="button-group">
                 <button class="command-button terminal" onclick="sendCommand('ctrl+c')">
