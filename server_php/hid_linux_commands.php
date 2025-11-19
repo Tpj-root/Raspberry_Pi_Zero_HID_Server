@@ -158,6 +158,111 @@
             opacity: 0.8;
             margin-left: 10px;
         }
+        /* Option 1 Styles */
+		.button-with-status {
+		    display: flex;
+		    align-items: center;
+		    gap: 10px;
+		    margin-bottom: 10px;
+		}
+		
+		.button-status {
+		    font-size: 12px;
+		    padding: 4px 8px;
+		    border-radius: 4px;
+		    min-width: 80px;
+		    text-align: center;
+		    transition: all 0.3s ease;
+		}
+		
+		.button-status.sending {
+		    background: #ffa500;
+		    color: white;
+		}
+		
+		.button-status.success {
+		    background: #4CAF50;
+		    color: white;
+		}
+		
+		.button-status.error {
+		    background: #f44336;
+		    color: white;
+		}
+		
+		/* Option 2 Styles */
+		.button-container {
+		    margin-bottom: 15px;
+		    position: relative;
+		}
+		
+		.button-content {
+		    display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		}
+		
+		.button-loader {
+		    width: 20px;
+		    height: 20px;
+		    border: 2px solid #f3f3f3;
+		    border-top: 2px solid #3498db;
+		    border-radius: 50%;
+		    animation: spin 1s linear infinite;
+		    display: none;
+		    margin-top: 5px;
+		}
+		
+		.button-feedback {
+		    font-size: 12px;
+		    margin-top: 5px;
+		    padding: 4px 8px;
+		    border-radius: 4px;
+		    text-align: center;
+		    min-height: 20px;
+		    transition: all 0.3s ease;
+		}
+		
+		.button-feedback.success {
+		    background: #d4edda;
+		    color: #155724;
+		    border: 1px solid #c3e6cb;
+		}
+		
+		.button-feedback.error {
+		    background: #f8d7da;
+		    color: #721c24;
+		    border: 1px solid #f5c6cb;
+		}
+		
+		.button-feedback.sending {
+		    background: #fff3cd;
+		    color: #856404;
+		    border: 1px solid #ffeaa7;
+		}
+		
+		/* Button active states */
+		.command-button:active {
+		    transform: translateY(2px);
+		}
+		
+		.command-button.loading {
+		    opacity: 0.7;
+		    cursor: not-allowed;
+		}
+		
+		.command-button.success {
+		    background: #4CAF50;
+		}
+		
+		.command-button.error {
+		    background: #f44336;
+		}
+		
+		@keyframes spin {
+		    0% { transform: rotate(0deg); }
+		    100% { transform: rotate(360deg); }
+		}
     </style>
 </head>
 <body>
@@ -186,26 +291,49 @@
             <p><strong>Window Managers:</strong> Some commands may behave differently in tiling window managers like i3 or sway.</p>
         </div>
 
-        <div id="message" class="message"></div>
-
-        <!-- Terminal Commands -->
-        <div class="command-section">
-            <h3>💻 Terminal Commands</h3>
-            
-            <div class="button-group">
-                <button class="command-button terminal" onclick="sendCommand('ctrl+alt+t')">
-                    <span>Open Terminal <span class="desktop-environment">(GNOME/Ubuntu)</span></span>
-                    <span class="key-combination">Ctrl + Alt + T</span>
-                </button>
-                <button class="command-button terminal" onclick="sendCommand('ctrl+shift+t')">
-                    <span>New Terminal Tab</span>
-                    <span class="key-combination">Ctrl + Shift + T</span>
-                </button>
-                <button class="command-button terminal" onclick="sendCommand('ctrl+d')">
-                    <span>Close Terminal</span>
-                    <span class="key-combination">Ctrl + D</span>
-                </button>
-            </div>
+			<div id="message" class="message"></div>
+			
+			<!-- Terminal Commands -->
+			<div class="command-section">
+			    <h3>💻 Terminal Commands</h3>
+			    
+			    <div class="button-group">
+			        <div class="button-container">
+			            <button class="command-button terminal" onclick="sendCommand('ctrl+alt+t', this)">
+			                <div class="button-content">
+			                    <span class="button-text">
+			                        Open Terminal <span class="desktop-environment">(GNOME/Ubuntu)</span>
+			                    </span>
+			                    <span class="key-combination">Ctrl + Alt + T</span>
+			                </div>
+			                <div class="button-loader"></div>
+			            </button>
+			            <div class="button-feedback" id="feedback-ctrl+alt+t"></div>
+			        </div>
+			        
+			        <div class="button-container">
+			            <button class="command-button terminal" onclick="sendCommand('ctrl+shift+t', this)">
+			                <div class="button-content">
+			                    <span class="button-text">New Terminal Tab</span>
+			                    <span class="key-combination">Ctrl + Shift + T</span>
+			                </div>
+			                <div class="button-loader"></div>
+			            </button>
+			            <div class="button-feedback" id="feedback-ctrl+shift+t"></div>
+			        </div>
+			        
+			        <div class="button-container">
+			            <button class="command-button terminal" onclick="sendCommand('ctrl+d', this)">
+			                <div class="button-content">
+			                    <span class="button-text">Close Terminal</span>
+			                    <span class="key-combination">Ctrl + D</span>
+			                </div>
+			                <div class="button-loader"></div>
+			            </button>
+			            <div class="button-feedback" id="feedback-ctrl+d"></div>
+			        </div>
+			    </div>
+			</div>
             <div class="command-description">
                 <strong>Open Terminal:</strong> Opens new terminal window (common shortcut in Ubuntu/GNOME). <strong>New Terminal Tab:</strong> Opens new tab in existing terminal. <strong>Close Terminal:</strong> Closes terminal window or exits shell.
             </div>
