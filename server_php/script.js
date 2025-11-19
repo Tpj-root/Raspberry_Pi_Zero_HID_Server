@@ -9,6 +9,8 @@ function showMessage(text, type) {
 }
 
 function sendCommand(command, buttonElement = null) {
+    console.log('Sending command:', command);
+    
     // Show sending state for button if provided
     if (buttonElement) {
         showButtonState(buttonElement, 'sending', 'Sending...');
@@ -24,13 +26,28 @@ function sendCommand(command, buttonElement = null) {
         },
         body: 'command=' + encodeURIComponent(command)
     })
-    .then(response => response.text())
-    .then(data => {
-        // Show success state for button if provided
-        if (buttonElement) {
-            showButtonState(buttonElement, 'success', 'Sent!');
+    .then(response => {
+        console.log('Response status:', response.status);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-        showMessage('✅ Linux command executed: ' + command, 'success');
+        return response.text();
+    })
+    .then(data => {
+        console.log('Response data:', data);
+        
+        // Check if the response indicates success (your PHP returns various success messages)
+        if (data && !data.includes('Error') && !data.includes('error') && 
+            !data.includes('Unknown') && !data.includes('Failed')) {
+            
+            // Show success state for button if provided
+            if (buttonElement) {
+                showButtonState(buttonElement, 'success', 'Sent!');
+            }
+            showMessage('✅ ' + data, 'success');
+        } else {
+            throw new Error(data || 'Unknown error occurred');
+        }
         
         // Reset button state after 2 seconds
         if (buttonElement) {
@@ -40,11 +57,12 @@ function sendCommand(command, buttonElement = null) {
         }
     })
     .catch(error => {
+        console.error('Fetch error:', error);
         // Show error state for button if provided
         if (buttonElement) {
             showButtonState(buttonElement, 'error', 'Failed!');
         }
-        showMessage('❌ Error sending command: ' + error, 'error');
+        showMessage('❌ Error: ' + error.message, 'error');
         
         // Reset button state after 2 seconds
         if (buttonElement) {
