@@ -31,8 +31,8 @@
             <p><strong>Terminal Commands:</strong> Terminal shortcuts work in most Linux terminal emulators (GNOME Terminal, Konsole, xterm, etc.).</p>
             <p><strong>Window Managers:</strong> Some commands may behave differently in tiling window managers like i3 or sway.</p>
         </div>
-<!-- 		<div id="message" class="message"></div>
- -->		
+		<div id="message" class="message"></div>
+		
 		<!-- Terminal Commands -->
 		<div class="command-section">
 		    <h3>💻 Terminal Commands</h3>
