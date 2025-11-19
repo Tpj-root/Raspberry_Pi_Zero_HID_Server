@@ -137,6 +137,7 @@ Device: /dev/hidg0
             <button onclick="sendCommand('world')">Send "world"</button>
             <button onclick="sendCommand('helloworld')">Send "hello world"</button>
             <button onclick="sendCommand('test')">Send "test"</button>
+            <button onclick="sendCommand('HELLOoooooo')">Send "HELLOoooooo"</button>
         </div>
 
         <div class="button-group">
